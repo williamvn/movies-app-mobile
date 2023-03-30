@@ -7,7 +7,7 @@ interface TouchablePosterProps {
     movie: Movie
 }
 
-export const TouchablePoster = ({ movie }: TouchablePosterProps) => {
+export const TouchableHeaderPoster = ({ movie }: TouchablePosterProps) => {
     const uri = `https://image.tmdb.org/t/p/w500${movie?.poster_path}`;
 
     return (
