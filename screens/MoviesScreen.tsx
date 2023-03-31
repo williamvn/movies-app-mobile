@@ -28,6 +28,7 @@ export const MoviesScreen = (props: StackScreenProps<any>) => {
                             sliderWidth={windowWidth}
                             itemWidth={500}
                             autoplay
+                            loop
                         />
                     </View>
                     <MoviesSlider movies={movies} title="Populares" />

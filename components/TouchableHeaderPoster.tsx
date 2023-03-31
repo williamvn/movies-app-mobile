@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 40,
         fontStyle: 'italic',
-        zIndex: 10000,
+        zIndex: 1,
         textAlign: 'left',
         position: 'absolute',
         bottom: 0,
         fontWeight: "bold",
-        padding: 10
+        width: "80%"
     }
 });
