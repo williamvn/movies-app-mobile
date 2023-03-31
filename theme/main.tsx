@@ -29,5 +29,11 @@ export const globalStyles = StyleSheet.create({
     },
     row: {
         flexDirection: 'row'
+    },
+    paragraph: {
+        fontSize: 15,
+        color: "white",
+        paddingHorizontal: 2,
+        fontFamily: "sans-serif-light"
     }
 });

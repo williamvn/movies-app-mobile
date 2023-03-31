@@ -6,13 +6,13 @@ import { getYear } from '../helper/dateHelper';
 import { RootStackParamList } from '../navigators/StackNavigator';
 import { globalStyles } from '../theme/main';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { Badge } from '../components/Badge';
 
 
 interface DetailsProps extends StackScreenProps<RootStackParamList, "Details"> { }
 
 export const DetailsScreen = (props: DetailsProps) => {
   const movie = props.route.params;
-
   return (
     <View style={globalStyles.container}>
       <View style={styles.container}>
@@ -24,10 +24,10 @@ export const DetailsScreen = (props: DetailsProps) => {
           <Icon style={styles.icon} name="film-outline" size={20} color={"white"} />
           <Icon style={styles.icon} name="heart-outline" size={20} color={"white"} />
         </View>
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>{"+16"}</Text>
-        </View>
+        <Badge title={movie.adult ? '18+' : "11+"} color={!movie.adult ? 'orange' : "#6FC3DF"} />
+        <Badge title={movie.vote_average.toString()} color="#333333" />
       </View>
+      <Text style={globalStyles.paragraph}>{movie.overview}</Text>
     </View>
   )
 }
@@ -44,18 +44,5 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: 3
   },
-  badge: {
-    marginLeft: 5,
-    backgroundColor: "orange",
-    borderRadius: 5,
-    paddingHorizontal: 4,
-    justifyContent: 'center',
-    height: 20,
-    marginTop: 3
-  },
-  badgeText: {
-    fontSize: 10,
-    color: "white",
-    fontWeight: "bold"
-  }
+
 });
