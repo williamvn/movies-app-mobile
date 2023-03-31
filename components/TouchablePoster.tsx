@@ -21,8 +21,8 @@ export const TouchablePoster = ({ movie }: TouchablePosterProps) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: 200,
-        height: 300,
+        width: 160,
+        height: 200,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
         elevation: 24,
     },
     image: {
-        width: 200,
-        height: 300,
+        width: 150,
+        height: 200,
         borderRadius: 20,
     },
 });

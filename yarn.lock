@@ -2940,6 +2940,15 @@
   "resolved" "https://registry.npmjs.org/depd/-/depd-2.0.0.tgz"
   "version" "2.0.0"
 
+"deprecated-react-native-prop-types@^2.3.0":
+  "integrity" "sha512-pWD0voFtNYxrVqvBMYf5gq3NA2GCpfodS1yNynTPc93AYA/KEMGeWDqqeUB6R2Z9ZofVhks2aeJXiuQqKNpesA=="
+  "resolved" "https://registry.npmjs.org/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-2.3.0.tgz"
+  "version" "2.3.0"
+  dependencies:
+    "@react-native/normalize-color" "*"
+    "invariant" "*"
+    "prop-types" "*"
+
 "deprecated-react-native-prop-types@^3.0.1":
   "integrity" "sha512-J0jCJcsk4hMlIb7xwOZKLfMpuJn6l8UtrPEzzQV5ewz5gvKNYakhBuq9h2rWX7YwHHJZFhU5W8ye7dB9oN8VcQ=="
   "resolved" "https://registry.npmjs.org/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-3.0.1.tgz"
@@ -6096,11 +6105,12 @@
     "react-freeze" "^1.0.0"
     "warn-once" "^0.1.0"
 
-"react-native-snap-carousel@^3.9.1":
-  "integrity" "sha512-xWEGusacIgK1YaDXLi7Gao2+ISLoGPVEBR8fcMf4tOOJQufutlNwkoLu0l6B8Qgsrre0nTxoVZikRgGRDWlLaQ=="
-  "resolved" "https://registry.npmjs.org/react-native-snap-carousel/-/react-native-snap-carousel-3.9.1.tgz"
+"react-native-snap-carousel@github:apurba-bware/react-native-snap-carousel#5a7f809e921262e4e2f646e8cfc4da85f7bd663d":
+  "integrity" "sha512-EXeurLXNt7xxDEYtRpMz/mc8YBpqfI+MHRnljQ+U1C/cRasZWaOaLGOl/vcK2W7bSFnOIuWnqJi8MqSyj1QQCg=="
+  "resolved" "git+ssh://git@github.com/apurba-bware/react-native-snap-carousel.git#5a7f809e921262e4e2f646e8cfc4da85f7bd663d"
   "version" "3.9.1"
   dependencies:
+    "deprecated-react-native-prop-types" "^2.3.0"
     "prop-types" "^15.6.1"
     "react-addons-shallow-compare" "15.6.2"
 
