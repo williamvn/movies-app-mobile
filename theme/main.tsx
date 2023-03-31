@@ -26,5 +26,8 @@ export const globalStyles = StyleSheet.create({
         color: "#d3d3d3",
         fontSize: 20,
         fontStyle: 'italic',
+    },
+    row: {
+        flexDirection: 'row'
     }
 });

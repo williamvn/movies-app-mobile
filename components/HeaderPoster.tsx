@@ -1,20 +1,21 @@
 import React from 'react'
-import { Text, Image, StyleSheet } from 'react-native'
+import { Text, Image, StyleSheet, View } from 'react-native'
 import { globalStyles } from '../theme/main'
 import LinearGradient from 'react-native-linear-gradient';
 import { Movie } from '../types/MoviesDB';
 import { getImageUri } from '../services/image';
 
 interface HeaderPosterProps {
-    movie: Movie
+    movie: Movie;
+    height?: number | string;
 }
 
-export const HeaderPoster = ({ movie }: HeaderPosterProps) => {
+export const HeaderPoster = ({ movie, height = 400 }: HeaderPosterProps) => {
     const uri = getImageUri(movie);
 
     return (
         <>
-            <Image source={{ uri }} style={styles.image} />
+            <Image source={{ uri }} style={{ width: "100%", height: height }} />
             <LinearGradient
                 colors={['transparent', 'rgba(0,0,0,1)']}
                 style={styles.gradient}
@@ -25,10 +26,6 @@ export const HeaderPoster = ({ movie }: HeaderPosterProps) => {
 }
 
 const styles = StyleSheet.create({
-    image: {
-        width: "100%",
-        height: 400
-    },
     gradient: {
         position: 'absolute',
         left: 0,
@@ -47,6 +44,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         fontWeight: "bold",
-        width: "80%"
-    },
+        width: "70%"
+    }
 });
