@@ -10,8 +10,7 @@ import { Loader } from '../components/Loader';
 const { width: windowWidth } = Dimensions.get('window')
 
 export const MoviesScreen = (props: StackScreenProps<any>) => {
-    const { movies, isLoading } = useMovies();
-    console.log("results:", movies.length)
+    const { playingNow, upcoming, topRated, populars, isLoading } = useMovies();
     return isLoading ?
         <Loader />
         :
@@ -21,7 +20,7 @@ export const MoviesScreen = (props: StackScreenProps<any>) => {
                 <View style={styles.container}>
                     <View>
                         <Carousel
-                            data={movies}
+                            data={playingNow}
                             renderItem={({ item }) => (
                                 <TouchableHeaderPoster movie={item} />
                             )}
@@ -31,8 +30,9 @@ export const MoviesScreen = (props: StackScreenProps<any>) => {
                             loop
                         />
                     </View>
-                    <MoviesSlider movies={movies} title="Populares" />
-                    <MoviesSlider movies={movies} title="Favorites" />
+                    <MoviesSlider movies={populars} title="Populares" />
+                    <MoviesSlider movies={topRated} title="Top Rated" />
+                    <MoviesSlider movies={upcoming} title="Upcoming" />
                 </View>
             </ScrollView>
 

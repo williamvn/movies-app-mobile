@@ -10,6 +10,20 @@ const moviesDB = axios.create({
 });
 
 
-export const getMovies = (): Promise<MoviesDBRes> => {
+export const getPlayingNowMovies = (): Promise<MoviesDBRes> => {
     return moviesDB.get("/now_playing").then(req => req.data);
+}
+
+export const getPopularMovies = (): Promise<MoviesDBRes> => {
+    return moviesDB.get("/popular").then(req => {
+        return req.data
+    });
+}
+
+export const getTopRatedMovies = (): Promise<MoviesDBRes> => {
+    return moviesDB.get("/top_rated").then(req => req.data);
+}
+
+export const getUpcomingMovies = (): Promise<MoviesDBRes> => {
+    return moviesDB.get("/upcoming").then(req => req.data);
 }

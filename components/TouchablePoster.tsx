@@ -9,7 +9,6 @@ interface TouchablePosterProps {
 
 export const TouchablePoster = ({ movie }: TouchablePosterProps) => {
     const uri = `https://image.tmdb.org/t/p/w500${movie?.poster_path}`;
-
     return (
         <View style={styles.container}>
             <TouchableOpacity>
