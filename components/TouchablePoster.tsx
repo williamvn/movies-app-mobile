@@ -1,7 +1,7 @@
 import React from 'react'
 import { Image, StyleSheet, TouchableOpacity, View, Text } from 'react-native'
 import { Movie } from '../types/MoviesDB'
-import LinearGradient from 'react-native-linear-gradient';
+import { useNavigation } from '@react-navigation/core';
 
 interface TouchablePosterProps {
     movie: Movie
@@ -9,9 +9,11 @@ interface TouchablePosterProps {
 
 export const TouchablePoster = ({ movie }: TouchablePosterProps) => {
     const uri = `https://image.tmdb.org/t/p/w500${movie?.poster_path}`;
+    const navigation = useNavigation<any>();
+    
     return (
         <View style={styles.container}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("Details", movie)}>
                 <Image source={{ uri }} style={styles.image} />
             </TouchableOpacity>
         </View>
