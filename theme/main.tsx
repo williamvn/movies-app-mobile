@@ -35,5 +35,11 @@ export const globalStyles = StyleSheet.create({
         color: "white",
         paddingHorizontal: 2,
         fontFamily: "sans-serif-light"
+    },
+    subparagraph: {
+        fontSize: 12,
+        color: "#d3d3d3",
+        paddingHorizontal: 2,
+        fontFamily: "sans-serif-light"
     }
 });

@@ -7,12 +7,15 @@ import { RootStackParamList } from '../navigators/StackNavigator';
 import { globalStyles } from '../theme/main';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Badge } from '../components/Badge';
+import { useCastName } from '../hooks/useCast';
+import CropedText from '../components/CropedText';
 
 
 interface DetailsProps extends StackScreenProps<RootStackParamList, "Details"> { }
 
 export const DetailsScreen = (props: DetailsProps) => {
   const movie = props.route.params;
+  const { castNames } = useCastName(movie.id);
   return (
     <View style={globalStyles.container}>
       <View style={styles.container}>
@@ -28,6 +31,7 @@ export const DetailsScreen = (props: DetailsProps) => {
         <Badge title={movie.vote_average.toString()} color="#333333" />
       </View>
       <Text style={globalStyles.paragraph}>{movie.overview}</Text>
+      <CropedText><Text style={{ fontWeight: "bold" }}>Cast: </Text>{castNames.join(", ")}</CropedText>
     </View>
   )
 }
@@ -43,6 +47,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginLeft: 3
-  },
+  }
 
 });
