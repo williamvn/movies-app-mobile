@@ -1,6 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
-import { Text, View, StyleSheet, ScrollView } from 'react-native'
+import { Text, View, StyleSheet, ScrollView, Linking } from 'react-native'
 import { HeaderPoster } from '../components/HeaderPoster';
 import { getYear } from '../helper/dateHelper';
 import { RootStackParamList } from '../navigators/StackNavigator';
@@ -10,14 +10,17 @@ import { Badge } from '../components/Badge';
 import { useCastName } from '../hooks/useCast';
 import CropedText from '../components/CropedText';
 import { TouchableIcon } from '../components/TouchableIcon';
+import { useMovieDetails } from '../hooks/useMovieDetails';
 
 interface DetailsProps extends StackScreenProps<RootStackParamList, "Details"> { }
 
 export const DetailsScreen = (props: DetailsProps) => {
   const movie = props.route.params;
   const { castNames } = useCastName(movie.id);
+  const { movieDetails } = useMovieDetails(movie.id);
+
   return (
-    <ScrollView style={{flex: 1, backgroundColor: "#000"}}>
+    <ScrollView style={{ flex: 1, backgroundColor: "#000" }}>
       <View style={globalStyles.container}>
         <View style={styles.container}>
           <HeaderPoster movie={movie} />
@@ -35,7 +38,7 @@ export const DetailsScreen = (props: DetailsProps) => {
         <CropedText><Text style={{ fontWeight: "bold" }}>Cast: </Text>{castNames.join(", ")}</CropedText>
         <View style={styles.moviesActionButtons}>
           <TouchableIcon iconName="add-outline" title='My List' />
-          <TouchableIcon iconName="play-outline" title='Watch' />
+          <TouchableIcon iconName="play-outline" title='Watch' onPress={() => Linking.openURL(`https://www.imdb.com/title/${movieDetails?.imdb_id}`)} />
           <TouchableIcon iconName="heart-outline" title='Favorite' />
         </View>
       </View>

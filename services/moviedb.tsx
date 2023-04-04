@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { Cast, CreditsRes } from "../types/Credits";
-import { Movie, MoviesDBRes } from "../types/MoviesDB";
+import { Movie, MovieDetails, MoviesDBRes } from "../types/MoviesDB";
 
 const moviesDB = axios.create({
     baseURL: "https://api.themoviedb.org/3/movie",
@@ -41,6 +41,13 @@ export const getUpcomingMovies = (): Promise<MoviesDBRes> => {
 
 export const getCastForMovie = (movieId: number): Promise<CreditsRes> => {
     return moviesDB.get(`/${movieId}/credits`).then(res => res.data).catch(err => {
+        console.error(`Error while fetching CastForMovie [${err.code}] cause ${err.cause}`);
+        throw err;
+    });
+}
+
+export const getMovieDetails = (movieId: number): Promise<MovieDetails> => {
+    return moviesDB.get(`/${movieId}`).then(res => res.data).catch(err => {
         console.error(`Error while fetching CastForMovie [${err.code}] cause ${err.cause}`);
         throw err;
     });
