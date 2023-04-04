@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View, LayoutChangeEvent } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { globalStyles } from '../theme/main';
 
-interface CropedTextProps extends IntrinsicAttributes {
+interface CropedTextProps {
     children: React.ReactNode[]
 }
 
 const CropedText = ({ children }: CropedTextProps) => {
     const [showAll, setShowAll] = useState(false);
+    const [textHeight, setTextHeight] = useState(0);
 
     const toggleShowAll = () => {
         setShowAll(!showAll);
     };
 
+    const onTextLayout = (event: LayoutChangeEvent) => {
+        setTextHeight(event.nativeEvent.layout.height);
+    };
+
     return (
         <View>
-            <Text style={globalStyles.subparagraph} numberOfLines={showAll ? undefined : 3}>{children}</Text>
-            {!showAll && (
+            <Text style={globalStyles.subparagraph} numberOfLines={showAll ? undefined : 3} onLayout={onTextLayout}>
+                {children}
+            </Text>
+            {textHeight > 3 * globalStyles.subparagraph.fontSize * 1.2 && (
                 <TouchableOpacity onPress={toggleShowAll}>
-                    <Text style={styles.seeMore}>See more</Text>
+                    <Text style={styles.seeMore}>{showAll ? 'See less' : 'See more'}</Text>
                 </TouchableOpacity>
-            )
-            }
-        </View >
+            )}
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     seeMore: {
         ...globalStyles.subparagraph,
-        fontWeight: "bold"
-    }
+        fontWeight: 'bold',
+    },
 });
 
 export default CropedText;
