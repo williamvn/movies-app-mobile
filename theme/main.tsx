@@ -40,7 +40,8 @@ export const globalStyles = StyleSheet.create({
         fontSize: 12,
         color: "#d3d3d3",
         paddingHorizontal: 2,
-        fontFamily: "sans-serif-light"
+        fontFamily: "sans-serif-light",
+        lineHeight: 14.5
     },
     mv10: {
         marginVertical: 10
