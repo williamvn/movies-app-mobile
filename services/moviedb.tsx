@@ -1,11 +1,12 @@
 import axios, { AxiosError } from "axios";
+import Config from "react-native-config";
 import { Cast, CreditsRes } from "../types/Credits";
 import { Movie, MovieDetails, MoviesDBRes } from "../types/MoviesDB";
 
 const moviesDB = axios.create({
     baseURL: "https://api.themoviedb.org/3/movie",
     params: {
-        api_key: "d75da6ed2e2fdd86885da75d28de45c0",
+        api_key: Config.API_KEY,
         language: "en-US"
     }
 });
