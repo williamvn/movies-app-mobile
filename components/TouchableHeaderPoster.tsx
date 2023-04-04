@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, View, Text } from 'react-native'
 import { Movie } from '../types/MoviesDB'
 import { useNavigation } from '@react-navigation/core';
 import { HeaderPoster } from './HeaderPoster';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { TouchableIcon } from './TouchableIcon';
 
 interface TouchablePosterProps {
     movie: Movie
@@ -17,7 +17,9 @@ export const TouchableHeaderPoster = ({ movie }: TouchablePosterProps) => {
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Details", movie)}>
                 <HeaderPoster movie={movie} />
             </TouchableOpacity>
-            <Icon style={styles.icon} name="heart-outline" size={20} color={"white"} />
+            <View style={styles.icon}>
+                <TouchableIcon animationRatio={34}  iconName="heart-outline" size={20} />
+            </View>
         </View>
     )
 }
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         position: 'absolute',
-        bottom: 0,
+        bottom: 10,
         right: 100,
         zIndex: 1
     }
