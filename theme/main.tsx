@@ -44,5 +44,9 @@ export const globalStyles = StyleSheet.create({
     },
     mv10: {
         marginVertical: 10
+    },
+    text: {
+        fontSize: 12,
+        color: "#d3d3d3",
     }
 });
