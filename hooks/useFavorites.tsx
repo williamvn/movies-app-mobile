@@ -10,5 +10,18 @@ export const useFavorites = () => {
         return favorites.find(fav => fav.id === movieId);
     }
 
-    return { favorites, addFavorites, isFavorite };
+    const toggleFavorite = (movie: Movie) => {
+        if (isFavorite(movie.id)) {
+            removeFavorite(movie.id);
+        }
+        else {
+            addFavorites(movie);
+        }
+    }
+
+    const removeFavorite = (movieId: number) => {
+        setFavorites(favorites.filter(fav => fav.id !== movieId));
+    }
+
+    return { favorites, addFavorites, isFavorite, toggleFavorite, removeFavorite };
 }

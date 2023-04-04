@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, TouchableWithoutFeedback, StyleSheet, Animated, Text } from 'react-native';
+import { View, TouchableWithoutFeedback, StyleSheet, Animated, Text, StyleProp, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { globalStyles } from '../theme/main';
 
@@ -8,7 +8,9 @@ interface TouchableIconProps {
     title?: string;
     size?: number;
     color?: string;
-    onPress?: () => {};
+    onPress?: () => any;
+    style?: StyleProp<ViewStyle>;
+    animationRatio?: number;
 }
 
 export const TouchableIcon = (props: TouchableIconProps) => {
@@ -17,8 +19,12 @@ export const TouchableIcon = (props: TouchableIconProps) => {
         title,
         size = 40,
         color = "white",
-        onPress = () => { }
+        onPress = () => { },
+        animationRatio
     } = props;
+
+    styles.animatedView.width = animationRatio ?? 100;
+    styles.animatedView.height = animationRatio ?? 100;
 
     const scaleAnim = useRef(new Animated.Value(1)).current;
     const opacityAnim = useRef(new Animated.Value(0)).current;
@@ -61,11 +67,11 @@ export const TouchableIcon = (props: TouchableIconProps) => {
     };
 
     return (
-        <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut}>
+        <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut} style={props.style}>
             <View style={styles.iconWrapper}>
                 <Icon name={iconName} size={size} color={color} />
                 <Animated.View style={[styles.animatedView, animatedStyle]} />
-                <Text style={globalStyles.text}>{title}</Text>
+                {title && <Text style={globalStyles.text}>{title}</Text>}
             </View>
         </TouchableWithoutFeedback>
     );

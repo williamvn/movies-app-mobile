@@ -4,6 +4,7 @@ import { Movie } from '../types/MoviesDB'
 import { useNavigation } from '@react-navigation/core';
 import { HeaderPoster } from './HeaderPoster';
 import { TouchableIcon } from './TouchableIcon';
+import { useFavorites } from '../hooks/useFavorites';
 
 interface TouchablePosterProps {
     movie: Movie
@@ -11,14 +12,15 @@ interface TouchablePosterProps {
 
 export const TouchableHeaderPoster = ({ movie }: TouchablePosterProps) => {
     const navigation = useNavigation<any>();
-
+    const { toggleFavorite, isFavorite } = useFavorites();
+    const isMovieFavorite = isFavorite(movie.id);
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Details", movie)}>
                 <HeaderPoster movie={movie} />
             </TouchableOpacity>
             <View style={styles.icon}>
-                <TouchableIcon animationRatio={34}  iconName="heart-outline" size={20} />
+                <TouchableIcon animationRatio={34} iconName={isMovieFavorite ? "heart" : "heart-outline"} size={20} color={isMovieFavorite ? "red" : "white"} onPress={() => toggleFavorite(movie)} />
             </View>
         </View>
     )
