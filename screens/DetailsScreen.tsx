@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Badge } from '../components/Badge';
 import { useCastName } from '../hooks/useCast';
 import CropedText from '../components/CropedText';
+import { TouchableIcon } from '../components/TouchableIcon';
 
 
 interface DetailsProps extends StackScreenProps<RootStackParamList, "Details"> { }
@@ -30,8 +31,13 @@ export const DetailsScreen = (props: DetailsProps) => {
         <Badge title={movie.adult ? '18+' : "11+"} color={!movie.adult ? 'orange' : "#6FC3DF"} />
         <Badge title={movie.vote_average.toString()} color="#333333" />
       </View>
-      <Text style={globalStyles.paragraph}>{movie.overview}</Text>
+      <Text style={[globalStyles.paragraph, globalStyles.mv10]}>{movie.overview}</Text>
       <CropedText><Text style={{ fontWeight: "bold" }}>Cast: </Text>{castNames.join(", ")}</CropedText>
+      <View style={styles.moviesActionButtons}>
+        <TouchableIcon name="add-outline" />
+        <TouchableIcon name="play-outline" />
+        <TouchableIcon name="heart-outline" />
+      </View>
     </View>
   )
 }
@@ -43,10 +49,15 @@ const styles = StyleSheet.create({
   iconContainer: {
     marginTop: 3,
     marginLeft: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   icon: {
     marginLeft: 3
+  },
+  moviesActionButtons: {
+    marginTop: 50,
+    justifyContent: 'space-around',
+    flexDirection: 'row',
   }
 
 });

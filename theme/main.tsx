@@ -41,5 +41,8 @@ export const globalStyles = StyleSheet.create({
         color: "#d3d3d3",
         paddingHorizontal: 2,
         fontFamily: "sans-serif-light"
+    },
+    mv10: {
+        marginVertical: 10
     }
 });
