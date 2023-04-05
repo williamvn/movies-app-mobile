@@ -6,6 +6,7 @@ export interface FavoritesStateProps {
     favorites: FavoriteState;
     isFavorite: (movieId: number) => boolean;
     toggleFavorite: (movie: Movie) => void;
+    removeFavorite: (movieId: number) => void;
 }
 
 export type FavoriteState = { movies: Map<number, Movie> };
@@ -19,6 +20,7 @@ export const FavoriteProvider = ({ children }: { children: JSX.Element[] | JSX.E
             favorites: favoritesState,
             isFavorite: (movieId: number) => favoritesState.movies.has(movieId),
             toggleFavorite: (movie: Movie) => dispatch({ type: "toggle", payload: { movie } }),
+            removeFavorite: (movieId: number) => dispatch({ type: "remove", payload: { movieId } })
         }}>
             {children}
         </FavoriteContext.Provider>

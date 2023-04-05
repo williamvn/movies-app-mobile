@@ -17,7 +17,7 @@ export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "black",
-        paddingBottom: 50
+        paddingBottom: 50,
     },
     gradient: {
         position: 'absolute',
@@ -62,5 +62,13 @@ export const globalStyles = StyleSheet.create({
     text: {
         fontSize: 12,
         color: "#d3d3d3",
+    },
+    text2: {
+        fontSize: 17,
+        color: "#d3d3d3",
+    },
+    center: {
+        justifyContent: "center",
+        alignItems: "center"
     }
 });
