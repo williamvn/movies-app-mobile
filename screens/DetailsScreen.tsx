@@ -1,5 +1,5 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Text, View, StyleSheet, ScrollView, Linking } from 'react-native'
 import { HeaderPoster } from '../components/HeaderPoster';
 import { getYear } from '../helper/dateHelper';
@@ -11,6 +11,7 @@ import { useCastName } from '../hooks/useCast';
 import CropedText from '../components/CropedText';
 import { TouchableIcon } from '../components/TouchableIcon';
 import { useMovieDetails } from '../hooks/useMovieDetails';
+import { FavoriteContext } from '../contexts/FavoriteContext';
 
 interface DetailsProps extends StackScreenProps<RootStackParamList, "Details"> { }
 
@@ -18,6 +19,13 @@ export const DetailsScreen = (props: DetailsProps) => {
   const movie = props.route.params;
   const { castNames } = useCastName(movie.id);
   const { movieDetails } = useMovieDetails(movie.id);
+  const { favorites, isFavorite, toggleFavorite } = useContext(FavoriteContext);
+  const [isMovieFavorite, setIsMovieFavorite] = useState(false);
+
+  useEffect(() => {
+    setIsMovieFavorite(isFavorite(movie.id));
+  }, [favorites])
+
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#000" }}>
@@ -39,7 +47,7 @@ export const DetailsScreen = (props: DetailsProps) => {
         <View style={styles.moviesActionButtons}>
           <TouchableIcon iconName="add-outline" title='My List' />
           <TouchableIcon iconName="play-outline" title='Watch' onPress={() => Linking.openURL(`https://www.imdb.com/title/${movieDetails?.imdb_id}`)} />
-          <TouchableIcon iconName="heart-outline" title='Favorite' />
+          <TouchableIcon title='Favorite' iconName={isMovieFavorite ? "heart" : "heart-outline"} color={isMovieFavorite ? "#E50914" : "white"} onPress={() => toggleFavorite(movie)} />
         </View>
       </View>
     </ScrollView>

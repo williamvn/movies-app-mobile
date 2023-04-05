@@ -11,6 +11,7 @@ export const useMovies = () => {
 
     useEffect(() => {
         getPlayingNowMovies().then((movieRes: MoviesDBRes) => {
+            console.log("PLayingNow:", movieRes.results.length)
             setNowPlaying(movieRes.results);
             setIsLoading(false);
         });

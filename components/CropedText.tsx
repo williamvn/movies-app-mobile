@@ -18,7 +18,6 @@ const CropedText = ({ children }: CropedTextProps) => {
     };
 
     useEffect(() => {
-        console.log('areMoreThan3Lines', areMoreThan3Lines());
         if (areMoreThan3Lines()) {
             setDisplaySeeMoreButton(true);
         }
