@@ -12,7 +12,7 @@ export type FavoriteState = { movies: Map<number, Movie> };
 
 export const FavoriteContext = createContext({} as FavoritesStateProps);
 
-export const FavoriteProvider = ({ children }: { children: JSX.Element[] }) => {
+export const FavoriteProvider = ({ children }: { children: JSX.Element[] | JSX.Element }) => {
     const [favoritesState, dispatch] = useReducer(favoriteReducer, { movies: new Map() });
     return (
         <FavoriteContext.Provider value={{

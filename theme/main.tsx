@@ -1,5 +1,18 @@
 import { StyleSheet } from "react-native";
 
+export const colors = StyleSheet.create({
+    background: {
+        color: "#000"
+    },
+    contrast: {
+        color: "white"
+    },
+    primary: {
+        color: "#E50914"
+    }
+});
+
+
 export const globalStyles = StyleSheet.create({
     container: {
         flex: 1,
