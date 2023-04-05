@@ -11,7 +11,6 @@ interface TouchablePosterProps {
 }
 
 export const TouchableHeaderPoster = ({ movie }: TouchablePosterProps) => {
-    console.log("Redering Header")
     const navigation = useNavigation<any>();
     const { favorites, isFavorite, toggleFavorite } = useContext(FavoriteContext);
     const [isMovieFavorite, setIsMovieFavorite] = useState(false);

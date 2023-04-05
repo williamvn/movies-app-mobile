@@ -3,16 +3,14 @@ import { FavoriteState } from "./FavoriteContext";
 
 export type FavoriteReducerAction = { type: "toggle" | "add", payload: { movie: Movie } } | { type: "remove", payload: { movieId: number } };
 
-const addFavorites = (state: Movie[], movie: Movie) => {
-    return { movies: [...state, movie] };
+const addFavorites = (state: Map<number, Movie>, movie: Movie) => {
+    state.set(movie.id, movie);
+    return { movies: state };
 }
 
-const removeFavorite = (state: Movie[], movieId: number) => {
-    return { movies: state.filter(fav => fav.id !== movieId) }
-}
-
-const isFavorite = (movies: Movie[], movieId: number) => {
-    return movies.find(fav => fav.id === movieId);
+const removeFavorite = (state: Map<number, Movie>, movieId: number) => {
+    state.delete(movieId);
+    return { movies: state };
 }
 
 export const favoriteReducer = ({ movies }: FavoriteState, action: FavoriteReducerAction): FavoriteState => {
@@ -22,7 +20,7 @@ export const favoriteReducer = ({ movies }: FavoriteState, action: FavoriteReduc
         case "remove":
             return removeFavorite(movies, action.payload.movieId);
         case "toggle":
-            if (isFavorite(movies, action.payload.movie.id)) {
+            if (movies.has(action.payload.movie.id)) {
                 return removeFavorite(movies, action.payload.movie.id);
             }
             else {

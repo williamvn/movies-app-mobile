@@ -8,17 +8,16 @@ export interface FavoritesStateProps {
     toggleFavorite: (movie: Movie) => void;
 }
 
-export type FavoriteState = { movies: Movie[] };
+export type FavoriteState = { movies: Map<number, Movie> };
 
 export const FavoriteContext = createContext({} as FavoritesStateProps);
 
 export const FavoriteProvider = ({ children }: { children: JSX.Element[] }) => {
-    const [favoritesState, dispatch] = useReducer(favoriteReducer, { movies: [] });
-    let leak = 0
+    const [favoritesState, dispatch] = useReducer(favoriteReducer, { movies: new Map() });
     return (
         <FavoriteContext.Provider value={{
             favorites: favoritesState,
-            isFavorite: (movieId: number) => { console.log(++leak); return !!favoritesState.movies.find(fav => fav.id === movieId) },
+            isFavorite: (movieId: number) => favoritesState.movies.has(movieId),
             toggleFavorite: (movie: Movie) => dispatch({ type: "toggle", payload: { movie } }),
         }}>
             {children}
