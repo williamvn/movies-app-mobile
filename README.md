@@ -1,6 +1,10 @@
 # Movies Mobile App
 This is a mobile movies app build in react native. The project consumes a database of movies targeting a public web API, Movie DB.
+
+
 <img src="https://github.com/williamvn/movies-app-mobile/blob/master/Screenshot.png?raw=true" alt="Movies App" width="200">
+
+
 
 ## Functionalities
 
